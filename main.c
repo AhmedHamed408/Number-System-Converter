@@ -85,98 +85,54 @@ again1:
 
 void hex2dec()
 {
-    int i,j,n=0,sum=0,t,m;
+    int i,j,n=0,sum=0,t;
 
     char num[500];
 
     printf("Enter the hexadecimal number: ");
 again:    // TO returen here again if user enter unvalid number
     scanf("%s",&num);
-    if(num[0]!='-')
+
+
+    for(j=0; num[j]!='\0'; j++)
     {
-
-
-        for(j=0; num[j]!='\0'; j++)
-        {
-            n++;   //calculate number .....
-        }
-
-        n--;       //because we multiply *16^(n-1)
-
-        for(i=0; num[i]!='\0'; i++)
-        {
-            if(num[i]>='0'&&num[i]<='9') //check if num from 0 to 9
-            {
-                t=num[i]-48;           //convert num (0-9) to decimal number equvilant(0=48)
-            }
-
-            else if(num[i]>='A'&&num[i]<='F') //check if num A,B,C,D,E,F
-            {
-                t=num[i]-65+10;    //convert num (A-F) to hex number equvilant(A-F)
-            }
-
-            else if(num[i]>='a'&&num[i]<='f')  //check if num a,b,c,d,e,f
-            {
-                t=num[i]-97+10;   //convert num (a-f) to hex number equvilant(a-f)
-            }
-
-            else if((num[i]>='G'&&num[i]<='Z')||(num[i]>='g'&&num[i]<='z'))  //check if user enter unvalid number
-            {
-                printf("Number you enter is't valid \nEnter valid hexadecimal number :");
-                t=n=sum=0;  //put t,c,r=0 to read new number
-                goto again;   // when user enter unvalid number return to read new number
-            }
-
-            sum=sum+t*pow(16,n);
-            n--;
-        }
-        printf("\Decimal equivalent: %d \n",sum);
+        n++;   //calculate number .....
     }
 
-}
+    n--;       //because we multiply *16^(n-1)
 
-void oct2dec()
-{
-    int i,j,n=0,sum=0,t,m;
-
-    char num[500];
-
-    printf("Enter the Octal number: ");
-again:    // TO returen here again if user enter unvalid number
-    scanf("%s",&num);
-    if(num[0]!='-')
+    for(i=0; num[i]!='\0'; i++)
     {
-
-
-        for(j=0; num[j]!='\0'; j++)
+        if(num[i]>='0'&&num[i]<='9') //check if num from 0 to 9
         {
-            n++;   //calculate number .....
+            t=num[i]-48;           //convert num (0-9) to decimal number equvilant(0=48)
         }
 
-        n--;       //because we multiply *16^(n-1)
-
-        for(i=0; num[i]!='\0'; i++)
+        else if(num[i]>='A'&&num[i]<='F') //check if num A,B,C,D,E,F
         {
-            if(num[i]>='0'&&num[i]<='7') //check if num from 0 to 9
-            {
-                t=num[i]-48;           //convert num (0-9) to decimal number equvilant(0=48)
-            }
-
-
-            else if(num[i]<'0'||num[i]>'7')  //check if user enter unvalid number
-            {
-                printf("Number you enter is't valid \nEnter valid Octal number :");
-                t=n=sum=0;  //put t,c,r=0 to read new number
-                goto again;   // when user enter unvalid number return to read new number
-            }
-
-            sum=sum+t*pow(8,n);
-            n--;
+            t=num[i]-65+10;    //convert num (A-F) to hex number equvilant(A-F)
         }
-        printf("\nDecimal equivalent: %d \n",sum);
+
+        else if(num[i]>='a'&&num[i]<='f')  //check if num a,b,c,d,e,f
+        {
+            t=num[i]-97+10;   //convert num (a-f) to hex number equvilant(a-f)
+        }
+
+        else if((num[i]>='G'&&num[i]<='Z')||(num[i]>='g'&&num[i]<='z'))  //check if user enter unvalid number
+        {
+            printf("Number you enter is't valid \nEnter valid hexadecimal number :");
+            t=n=sum=0;  //put t,c,r=0 to read new number
+            goto again;   // when user enter unvalid number return to read new number
+        }
+
+        sum=sum+t*pow(16,n);
+        n--;
     }
-
+    printf("\Decimal equivalent: %d \n",sum);
 }
+
+
+
 void dec2hex()
 {
 
@@ -207,7 +163,7 @@ void Bin2Hex()
     int index = 0;
 
 
-    printf("Enter Binary Number: \n");
+    printf("Enter Binary Number: ");
     scanf("%s", BinNum);
 
     for (int i = 0; i < strlen(BinNum); i++)
@@ -256,7 +212,7 @@ void Hex2Bin()
     char HexNum[100];
 
 
-    printf("Enter Hexadecimal Number: \n");
+    printf("Enter Hexadecimal Number: ");
     scanf("%s", HexNum);
 
     for (int i = 0; i < strlen(HexNum); i++)
@@ -295,14 +251,14 @@ void Hex2Bin()
     printf("Binary equivalent: %s\n", binary);
 }
 
-void dec2bin()
+void dec2bin()  //the function that converts from decimal to binary
 {
     int num, bit=1,n;
     bit<<=31;
     printf("Enter a decimal number: ");
     scanf("%d",&num);
     printf("\n\n");
-    if(num>=0)
+    if(num>=0)          // if the decimal number is positive converts it to binary by using bitwise and prints it by putchar
     {
         printf("Binary equivalent: ");
         for(int i=1; i<=32; i++)
@@ -314,12 +270,12 @@ void dec2bin()
         }
         printf("\n\n");
     }
-    else
+    else             // if the decimal number is negative
     {
         int arr[32],arr2[32];
-        int k=8;
+        int k;
         num*=-1;
-        for(int i=0; i<=31; i++)
+        for(int i=0; i<=31; i++)    //convert the value to binary in array "arr[]"
         {
             arr[i]=((num%2==1)?1:0);
 
@@ -327,7 +283,7 @@ void dec2bin()
 
         }
         printf("Binary equivalent: ");
-        for(int i=0; i<=31; i++)
+        for(int i=0; i<=31; i++)         // Make the two's complement to the binary number and save the Result in array "arr2[]"
         {
             if(arr[i]==0)
                 arr2[i]=arr[i];
@@ -343,7 +299,7 @@ void dec2bin()
         {
             arr2[i]=(arr[i]==0?1:0);
         }
-        for(int i=31; i>=0; i--)
+        for(int i=31; i>=0; i--)        //print the two's complement to the binary number from 'arr2[]'
         {
             printf("%d",arr2[i]);
             if(i%4==0)
@@ -353,13 +309,13 @@ void dec2bin()
     }
 }
 
-void bin2dec()
+void bin2dec()             // the function that converts from binary to decimal
 {
     int i=0,count=0,num=0,k;
     char  arr[100],a;
 again:
     printf("\nEnter the binary number : ");
-    do   //read the binary number and stores it in array "arr[32]"
+    do                       //read the binary number and stores it in array "arr[32]"
     {
         a=getche();
 
@@ -382,11 +338,11 @@ again:
     printf("\n\n");
 
     int arr2[count];
-
-    if(arr[0]=='0')
+    if(arr[0]=='0')        // test the first bit from left( To determine the signal is positive or negative)
     {
+        // If "if(arr[0]=='0')" is true, the number is positive
         int j=-3;
-        for(int i=count; i>0; i--)
+        for(int i=count; i>0; i--)   // calculate the value of the positive decimal number
         {
             j++;
             if(arr[i]=='1')
@@ -397,10 +353,10 @@ again:
         }
         printf("Decimal equivalent:  %d\n\n",num);
     }
-    else
+    else            //if "if(arr[0]=='0')" is false,  the number is negative
     {
         int j=0;
-        for(int i=count-1; i>=0; i--)
+        for(int i=count-1; i>=0; i--)  // Make the two's complement to the binary number and save the Result in array "arr2[]"
         {
             if(arr[i]=='0')
             {
@@ -424,7 +380,7 @@ again:
         }
         int f=-2,num=0;
 
-        for(int i=0; i<count; i++)
+        for(int i=0; i<count; i++)   //  calculate the value of the decimal number after Making the two's complement to the binary number
         {
             f++;
             if(arr2[i]==1)
@@ -433,7 +389,8 @@ again:
 
             }
         }
-        printf("Decimal equivalent: -%d\n\n",num+1);
+        printf("Decimal equivalent: -%d\n\n",num+1);  // Print negative sign then the value
     }
 
 }
+
