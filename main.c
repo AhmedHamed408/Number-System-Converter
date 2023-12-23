@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include <math.h>   // for: pow(2,0) function
 #include <string.h> // for: strlen() function
-#include <conio.h>
+#include <conio.h> //for: getchar
 
 void hex2dec();
-void oct2dec();
 void dec2hex();
-void dec2oct();
 void Bin2Hex();
 void Hex2Bin();
 void dec2bin();
@@ -23,7 +21,7 @@ again:
     printf(">>> Welcome to Number System Converter <<< \n");
     printf("-------------------------------------------\n\n");
 
-    printf("Chose the number of process you want to do \n\n1- hex2dec \n2- oct2dec \n3- dec2hex \n4- dec2oct \n5- Bin2Hex \n6- Hex2Bin \n7- dec2bin  \n8- bin2dec ");
+    printf("Chose the number of process you want to do \n\n1- Hex2Dec \n2- Hex2Bin \n3- Dec2Hex \n4- Dec2Bin \n5- Bin2Dec \n6- Bin2Hex  ");
     printf("\n\nProcess number = ");
     scanf("%d",&choose);
     printf("\n\n");
@@ -35,35 +33,28 @@ again:
         break;
 
     case 2:
-        oct2dec();
+        Hex2Bin();
         break;
 
     case 3:
         dec2hex();
+
         break;
 
     case 4:
-        dec2oct();
-        break;
-
-    case 5:
-        Bin2Hex();
-        break;
-
-    case 6:
-        Hex2Bin();
-        break;
-
-    case 7:
         dec2bin();
         break;
 
-    case 8:
+    case 5:
         bin2dec();
         break;
 
+    case 6:
+        Bin2Hex();
+        break;
+
     default:
-        printf("\nError: the number must be between 1 to 8.\n");
+        printf("\nError: the number must be between 1 to 6.\n");
         printf("Press any key to continue... \n");
         getch();
         goto again;
@@ -85,7 +76,7 @@ again1:
     }
     else
     {
-        printf("Unvalid Choice\n");
+        printf("Invalid Choice\n");
         goto again1;
     }
 
@@ -139,10 +130,9 @@ again:    // TO returen here again if user enter unvalid number
             sum=sum+t*pow(16,n);
             n--;
         }
-        printf("\nThe decimal number is: %d \n",sum);
+        printf("\Decimal equivalent: %d \n",sum);
     }
-    else
-        printf("\nI can't convert negative numbers\n");
+
 }
 
 void oct2dec()
@@ -183,10 +173,9 @@ again:    // TO returen here again if user enter unvalid number
             sum=sum+t*pow(8,n);
             n--;
         }
-        printf("\nThe decimal number is: %d \n",sum);
+        printf("\nDecimal equivalent: %d \n",sum);
     }
-    else
-        printf("\nI can't convert negative numbers\n");
+
 }
 void dec2hex()
 {
@@ -196,7 +185,7 @@ void dec2hex()
     printf("Enter a decimal number: ");
     scanf("%d", &decimalNumber);
 
-    printf("Hexadecimal number: %X\n", decimalNumber);
+    printf("Hexadecimal equivalent: %X\n", decimalNumber);
 
 }
 void dec2oct()
@@ -206,7 +195,7 @@ void dec2oct()
     printf("Enter a decimal number: ");
     scanf("%d", &decimalNumber);
 
-    printf("Octal number: %o\n", decimalNumber);
+    printf("Octal equivalent: %o\n", decimalNumber);
 }
 void Bin2Hex()
 {
@@ -310,12 +299,12 @@ void dec2bin()
 {
     int num, bit=1,n;
     bit<<=31;
-    printf("enter a decimal number: ");
+    printf("Enter a decimal number: ");
     scanf("%d",&num);
     printf("\n\n");
     if(num>=0)
     {
-        printf("the binary number = ");
+        printf("Binary equivalent: ");
         for(int i=1; i<=32; i++)
         {
             putchar(bit&num?'1':'0');
@@ -337,7 +326,7 @@ void dec2bin()
             num/=2;
 
         }
-        printf("the binary number = ");
+        printf("Binary equivalent: ");
         for(int i=0; i<=31; i++)
         {
             if(arr[i]==0)
@@ -369,7 +358,7 @@ void bin2dec()
     int i=0,count=0,num=0,k;
     char  arr[100],a;
 again:
-    printf("\nenter the binary number : ");
+    printf("\nEnter the binary number : ");
     do   //read the binary number and stores it in array "arr[32]"
     {
         a=getche();
@@ -406,7 +395,7 @@ again:
 
             }
         }
-        printf("the decimal value equals:  %d\n\n",num);
+        printf("Decimal equivalent:  %d\n\n",num);
     }
     else
     {
@@ -444,7 +433,7 @@ again:
 
             }
         }
-        printf("the decimal value equals: -%d\n\n",num+1);
+        printf("Decimal equivalent: -%d\n\n",num+1);
     }
 
 }
