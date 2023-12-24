@@ -212,7 +212,6 @@ void Hex2Bin()
             printf("Invalid hexadecimal number.\nEnter valid hexadecimal number\n");
 
             goto again3;
-            printf("Invalid hexadecimal number.\n");
 
 
         }
