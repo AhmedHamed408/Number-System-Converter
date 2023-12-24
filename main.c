@@ -21,7 +21,7 @@ again:
     printf(">>> Welcome to Number System Converter <<< \n");
     printf("-------------------------------------------\n\n");
 
-    printf("Chose the number of process you want to do \n\n1- Hex2Dec \n2- Hex2Bin \n3- Dec2Hex \n4- Dec2Bin \n5- Bin2Dec \n6- Bin2Hex  ");
+    printf("Chose the number of process you want to do \n\n1- Hexadecimal To Decimal \n2- Hexadecimal To Binary \n3- Decimal To Hexadecimal \n4- Decimal To Binary \n5- Binary To Decimal \n6- Binary To Hexadecimal  ");
     printf("\n\nProcess number = ");
     scanf("%d",&choose);
     printf("\n\n");
@@ -61,7 +61,7 @@ again:
 
     }
 again1:
-    printf("You want to convert another number (y/n) ?  ");
+    printf("\nYou want to convert another number (y/n) ?  ");
     scanf("%s",&cont);
 
     if(cont=='y'||cont=='Y')
@@ -89,9 +89,9 @@ void hex2dec()
 
     char num[500];
 
-    printf("Enter the hexadecimal number: ");
+    printf("Enter a hexadecimal number: ");
 again:    // TO returen here again if user enter unvalid number
-    scanf("%s",&num);
+    scanf("%s",num);
 
 
     for(j=0; num[j]!='\0'; j++)
@@ -120,7 +120,7 @@ again:    // TO returen here again if user enter unvalid number
 
         else if((num[i]>='G'&&num[i]<='Z')||(num[i]>='g'&&num[i]<='z'))  //check if user enter unvalid number
         {
-            printf("Number you enter is't valid \nEnter valid hexadecimal number :");
+            printf("Number you enter is't valid \nEnter valid hexadecimal number: ");
             t=n=sum=0;  //put t,c,r=0 to read new number
             goto again;   // when user enter unvalid number return to read new number
         }
@@ -128,7 +128,7 @@ again:    // TO returen here again if user enter unvalid number
         sum=sum+t*pow(16,n);
         n--;
     }
-    printf("\Decimal equivalent: %d \n",sum);
+    printf("\nDecimal equivalent: %d \n",sum);
 }
 
 
@@ -144,34 +144,26 @@ void dec2hex()
     printf("Hexadecimal equivalent: %X\n", decimalNumber);
 
 }
-void dec2oct()
-{
 
-    int decimalNumber;
-    printf("Enter a decimal number: ");
-    scanf("%d", &decimalNumber);
-
-    printf("Octal equivalent: %o\n", decimalNumber);
-}
 void Bin2Hex()
 {
 
     char BinNum[100];
     int decimal = 0;
     int power = 1;
-    char hexadecimal[100];
-    int index = 0;
 
 
-    printf("Enter Binary Number: ");
+    printf("Enter a Binary Number: ");
+    again2:
     scanf("%s", BinNum);
 
     for (int i = 0; i < strlen(BinNum); i++)
     {
         if (BinNum[i] != '0' && BinNum[i] != '1')
         {
-            printf("Invalid binary number.\n");
-            return;
+            printf("Invalid binary number.\nEnter valid binary number: ");
+
+            goto again2;
         }
     }
 
@@ -184,26 +176,7 @@ void Bin2Hex()
         power *= 2;
     }
 
-    while (decimal > 0)
-    {
-        int remainder = decimal % 16;
-        if (remainder < 10)
-        {
-            hexadecimal[index++] = remainder + '0';
-        }
-        else
-        {
-            hexadecimal[index++] = remainder - 10 + 'A';
-        }
-        decimal /= 16;
-    }
-
-    printf("Hexadecimal equivalent: ");
-    for (int i = index - 1; i >= 0; i--)
-    {
-        printf("%c", hexadecimal[i]);
-    }
-    printf("\n");
+    printf("Hexadecimal equivalent: %X\n", decimal);
 }
 void Hex2Bin()
 {
@@ -213,6 +186,7 @@ void Hex2Bin()
 
 
     printf("Enter Hexadecimal Number: ");
+    again3:
     scanf("%s", HexNum);
 
     for (int i = 0; i < strlen(HexNum); i++)
@@ -235,11 +209,13 @@ void Hex2Bin()
         }
         else
         {
+            printf("Invalid hexadecimal number.\nEnter valid hexadecimal number\n");
+
+            goto again3;
             printf("Invalid hexadecimal number.\n");
-            return;
+
+
         }
-
-
         for (int j = 3; j >= 0; j--)
         {
             binary[binaryIndex++] = (decimal & (1 << j)) ? '1' : '0';
@@ -253,7 +229,7 @@ void Hex2Bin()
 
 void dec2bin()  //the function that converts from decimal to binary
 {
-    int num, bit=1,n;
+    int num, bit=1;
     bit<<=31;
     printf("Enter a decimal number: ");
     scanf("%d",&num);
@@ -393,4 +369,3 @@ again:
     }
 
 }
-
